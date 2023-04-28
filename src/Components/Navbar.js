@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
+import Card from "./Card";
 
 const Navbar = () => {
-   const cartStyle={
-    backgroundColor:'orange',
-    display:'flex',
-    padding:6-12,
-    borderRadius:'90px',
-    width:'110%',
-    justifyItems:'auto'
-
-    }
+  const cartStyle = {
+    backgroundColor: "orange",
+    display: "flex",
+    padding: 6 - 12,
+    borderRadius: "90px",
+    width: "110%",
+    justifyItems: "auto",
+  };
   return (
     <>
       <nav
@@ -20,19 +20,26 @@ const Navbar = () => {
         <div>
           <Link to="/Cart">
             <div style={cartStyle}>
-                
-              <span style={{marginTop:10,fontSize:15}}>10</span>
-              <span style={{fontSize:15,marginTop:5,padding:5}}> Cart</span>
-              <img src="/cart.png" alt="cart icon" style={{height:40,marginLeft:5}}/>
-              
+              <span style={{ marginTop: 10, fontSize: 15 }}>10</span>
+              <span style={{ fontSize: 15, marginTop: 5, padding: 5 }}>
+                {" "}
+                Cart
+              </span>
+              <img
+                src="/cart.png"
+                alt="cart icon"
+                style={{ height: 40, marginLeft: 5 }}
+              />
             </div>
           </Link>
         </div>
       </nav>
-      <img
+      <Card/>
+
+      {/* <img
         src="https://images.pexels.com/photos/12843160/pexels-photo-12843160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         alt="logo"
-      ></img>
+      ></img> */}
     </>
   );
 };
