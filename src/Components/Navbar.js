@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Card from "./Card";
+// import CartItem from "./CartItem";
 
 const Navbar = () => {
   const cartStyle = {
@@ -35,6 +36,7 @@ const Navbar = () => {
         </div>
       </nav>
       <Card/>
+      {/* <CartItem/> */}
 
       {/* <img
         src="https://images.pexels.com/photos/12843160/pexels-photo-12843160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
