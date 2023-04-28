@@ -1,8 +1,12 @@
+body {
+    background-image: url("https://images.pexels.com/photos/12843160/pexels-photo-12843160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color:rgb(240, 162, 162)
+    
+  }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-app{
-  background-color: rgb(160, 52, 13);
-  justify-items: ;
-}
