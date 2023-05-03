@@ -1,16 +1,12 @@
-// import Header from "./Components/Layout/Header";
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Fragment } from "react";
 
 import Navbar from "./Components/Navbar";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" Component={Navbar}></Route>
-      </Routes>
-    </>
+    <Fragment>
+      <Navbar />
+    </Fragment>
   );
 }
 
