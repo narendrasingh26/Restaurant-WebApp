@@ -1,27 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { CartContext } from "../CartContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Cart from "./Cart";
 
-function Example() {
+function CartButton() {
+  const { cart } = useContext(CartContext);
+
   const [show, setShow] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-    setCartItems([
-      { id: 1, name: "Butter Paneer", amount: 2, price: 140 },
-      { id: 2, name: "Chicken Tikka Masala", amount: 1, price: 180 },
-    ]);
+    setCartItems(cart);
   };
+  let total=0;
+  for(const el of cart){
+      total=total+el.amount;
+  }
 
   return (
     <>
       <Button
-        // style={{ backgroundColor: "rgb(201, 44, 16)" }}
-        variant="Danger"
-        className="rounded-full"
+        size="sm"
+        variant=""
+        className="rounded-full bg-red-800 hover:bg-red-900"
         onClick={handleShow}
       >
         <div className="bg-red-900  py-1 px-3  rounded-full font-bold flex justify-between items-center mt-50 ">
@@ -32,20 +36,25 @@ function Example() {
           />
           <span className="text-cyan-50">Cart</span>
           <span className="bg-red-700  py-1 px-3 rounded-full font-bold text-cyan-50">
-            {cartItems.length}
+            {total}
           </span>
         </div>
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        className="container mx-auto lg:w-1/2 w-full pb-24 font-bold"
+        style={{ width: "500%" }}
+      >
+        <Modal.Header>
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{width:'100%'}}>
           <Cart show={show} onClose={handleClose} cartItems={cartItems} />
         </Modal.Body>
-        <Modal.Footer> 
-          <Button  onClick={handleClose} variant="outline-primary">
+        <Modal.Footer>
+          <Button onClick={handleClose} variant="outline-primary">
             Close
           </Button>
           <Button variant="outline-primary">Order Now</Button>
@@ -55,4 +64,4 @@ function Example() {
   );
 }
 
-export default Example;
+export default CartButton;

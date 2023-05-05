@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 import CartItem from "./CartItem";
 
-import Example from "./Example";
+import CartButton from "./CartButton";
 
 const Navbar = () => {
   return (
@@ -17,7 +17,7 @@ const Navbar = () => {
         >
           React Meals
         </div>
-        <Example />
+        <CartButton/>
       </div>
 
       <Card />

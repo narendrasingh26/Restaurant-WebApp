@@ -1,4 +1,6 @@
 import React from "react";
+import { CartContext } from "../CartContext";
+import { useContext } from "react";
 
 const items = [
   {
@@ -8,37 +10,37 @@ const items = [
     price: 350,
   },
   {
-    id: "a2",
+    id: "b2",
     name: "Kadhai-Paneer",
     image: "/kadhai.jpg",
     price: 320,
   },
   {
-    id: "a3",
+    id: "c3",
     name: "Daal-Makhani",
     image: "/dal.jpg",
     price: 280,
   },
   {
-    id: "a4",
+    id: "d4",
     name: "Veg-Pulao",
     image: "/veg.jpg",
     price: 180,
   },
   {
-    id: "a5",
+    id: "e5",
     name: "Cake",
     image: "/cake.jpg",
     price: 290,
   },
   {
-    id: "a6",
+    id: "f6",
     name: "IceCream",
     image: "/ice.jpg",
     price: 285,
   },
   {
-    id: "a7",
+    id: "g7",
     name: "Rasmalai",
     image: "/iras.jpg",
     price: 220,
@@ -46,6 +48,15 @@ const items = [
 ];
 
 const CartItem = () => {
+  const { cart, setCart } = useContext(CartContext);
+  
+
+  const addToCart = (item) => {
+    let newCart = [...cart, {...item,amount:1} ];
+    setCart(newCart);
+    
+  };
+
   return (
     <div className="w-3/4 ml-28 my-3 shadow-inner">
       <div className="container mx-auto pb-9 bg-orange-300 rounded-3xl ">
@@ -60,9 +71,9 @@ const CartItem = () => {
             <div key={item.id} className="flex justify-between items-center mt-50 " >
               <img src={item.image} alt={item.name} style={{width:150,height:80,borderRadius:20}}></img>
               <h2 className="text-lg font-bold my-8">{item.name}</h2>
-              <span>₹{item.price}</span>
-              <span>1</span>
-              <button className="bg-green-400 py-1 px-4 rounded-full font-bold">+ADD</button>
+              <span className="text-lg font-bold my-8">₹{item.price}</span>
+              <span style={{width:'3%'}}>	<input type="number" style={{width:'200%',backgroundColor:'rgb(240, 196, 114)',fontWeight:'bold'}}/></span>
+              <button onClick={(e)=>{addToCart(item, e)}} className='bg-green-400 py-1 px-4 rounded-full font-bold  text-white  hover:bg-green-800 font-medium dark:bg-green-600 dark:hover:bg-green-700'>+ADD</button>
             </div>
           ))}
         </div>
