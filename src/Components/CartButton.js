@@ -1,3 +1,5 @@
+// CartButton.js
+
 import React, { useState, useContext } from "react";
 import { CartContext } from "../CartContext";
 import Button from "react-bootstrap/Button";
@@ -5,20 +7,18 @@ import Modal from "react-bootstrap/Modal";
 import Cart from "./Cart";
 
 function CartButton() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const [show, setShow] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
-    setCartItems(cart);
+
+    setCart(cart);
   };
-  let total=0;
-  for(const el of cart){
-      total=total+el.amount;
-  }
+
+  let total = cart.length;
 
   return (
     <>
@@ -50,8 +50,14 @@ function CartButton() {
         <Modal.Header>
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{width:'100%'}}>
-          <Cart show={show} onClose={handleClose} cartItems={cartItems} />
+        <Modal.Body style={{ width: "100%" }}>
+          <Cart
+            show={show}
+            onClose={handleClose}
+            cart={cart}
+            // cartItems={cartItems}
+            // setCartItems={handleSetCartItems}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose} variant="outline-primary">

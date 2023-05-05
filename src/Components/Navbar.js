@@ -1,3 +1,4 @@
+// Navbar.js
 import React from "react";
 import Card from "./Card";
 import CartItem from "./CartItem";

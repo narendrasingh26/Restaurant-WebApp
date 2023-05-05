@@ -1,9 +1,51 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
+import { CartContext } from "../CartContext";
 
 const Cart = (props) => {
-  const cartItems = props.cartItems.map((item) => (
+  const { cart, setCart } = useContext(CartContext);
+
+  const handleDecrease = (id) => {
+    const updatedCartItems = cart.map((item) => {
+      if (item.id === id && item.amount > 0) {
+        return { ...item, amount: item.amount - 1 };
+      } else {
+        return item;
+      }
+    });
+    const newCartItems = updatedCartItems.filter((item) => item.amount > 0);
+    setCart(newCartItems);
+  };
+
+  const handleIncrease = (id) => {
+    const existingItem = cart.find((item) => item.id === id);
+
+    if (existingItem) {
+      const updatedCartItems = cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, amount: item.amount + 1 };
+        } else {
+          return item;
+        }
+      });
+      setCart(updatedCartItems);
+    } else {
+      const newItem = props.menuItems.find((item) => item.id === id);
+      setCart([...cart, { ...newItem, amount: 1 }]);
+    }
+  };
+
+  const handleDelete = (id) => {
+    const updatedCartItems = cart.filter((item) => item.id !== id);
+    setCart(updatedCartItems);
+  };
+
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.price * item.amount,
+    0
+  );
+
+  const cartItems = cart.map((item) => (
     <ListGroup.Item key={item.id}>
       <ul>
         <li className="grid grid-rows-5 my-1 gap-1">
@@ -25,6 +67,7 @@ const Cart = (props) => {
               <button
                 className="bg-yellow-500 px-4 py2 rounded-full leading-none hover:bg-yellow-600"
                 style={{ width: "5%" }}
+                onClick={() => handleDecrease(item.id)}
               >
                 -
               </button>
@@ -32,12 +75,16 @@ const Cart = (props) => {
               <button
                 className="bg-yellow-500 px-4 py2 rounded-full leading-none hover:bg-yellow-600"
                 style={{ width: "5%" }}
+                onClick={() => handleIncrease(item.id)}
               >
                 +
               </button>
             </div>
             <span>{item.price}</span>
-            <button className="bg-red-500 px-4 rounded-full leading-none text-white hover:bg-red-600">
+            <button
+              className="bg-red-500 px-4 rounded-full leading-none text-white hover:bg-red-600"
+              onClick={() => handleDelete(item.id)}
+            >
               DELETE
             </button>
           </div>
@@ -52,13 +99,7 @@ const Cart = (props) => {
       <ListGroup>{cartItems}</ListGroup>
       <div className="mt-3">
         <span className="mr-3">Total Amount:</span>
-        <strong>
-          ₹
-          {props.cartItems.reduce(
-            (total, item) => total + +item.amount * +item.price,
-            0
-          )}
-        </strong>
+        <span>{totalAmount}</span>
       </div>
     </>
   );

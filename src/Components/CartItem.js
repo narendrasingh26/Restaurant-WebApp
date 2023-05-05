@@ -49,12 +49,11 @@ const items = [
 
 const CartItem = () => {
   const { cart, setCart } = useContext(CartContext);
-  
+  // const [quantity, setQuantity] = useState("");
 
   const addToCart = (item) => {
-    let newCart = [...cart, {...item,amount:1} ];
+    let newCart = [...cart, { ...item, amount: 1 }];
     setCart(newCart);
-    
   };
 
   return (
@@ -62,18 +61,57 @@ const CartItem = () => {
       <div className="container mx-auto pb-9 bg-orange-300 rounded-3xl ">
         <div className="flex   ">
           <h1 className="text-lg font-bold my-8 underline">MAIN-COURSE</h1>
-          <h1 className="text-lg font-bold my-8 underline " style={{marginLeft:100}}>DISH</h1>
-          <h1 className="text-lg font-bold my-8 underline" style={{marginLeft:80}}>PRICE</h1>
-          <h1 className="text-lg font-bold my-8 underline" style={{marginLeft:40}}>QTY</h1>
+          <h1
+            className="text-lg font-bold my-8 underline "
+            style={{ marginLeft: 100 }}
+          >
+            DISH
+          </h1>
+          <h1
+            className="text-lg font-bold my-8 underline"
+            style={{ marginLeft: 80 }}
+          >
+            PRICE
+          </h1>
+          <h1
+            className="text-lg font-bold my-8 underline"
+            style={{ marginLeft: 40 }}
+          >
+            QTY
+          </h1>
         </div>
         <div className="grid grid-rows-5 my-1 gap-9">
-          {items.map(item => (
-            <div key={item.id} className="flex justify-between items-center mt-50 " >
-              <img src={item.image} alt={item.name} style={{width:150,height:80,borderRadius:20}}></img>
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="flex justify-between items-center mt-50 "
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                style={{ width: 150, height: 80, borderRadius: 20 }}
+              ></img>
               <h2 className="text-lg font-bold my-8">{item.name}</h2>
               <span className="text-lg font-bold my-8">₹{item.price}</span>
-              <span style={{width:'3%'}}>	<input type="number" style={{width:'200%',backgroundColor:'rgb(240, 196, 114)',fontWeight:'bold'}}/></span>
-              <button onClick={(e)=>{addToCart(item, e)}} className='bg-green-400 py-1 px-4 rounded-full font-bold  text-white  hover:bg-green-800 font-medium dark:bg-green-600 dark:hover:bg-green-700'>+ADD</button>
+              <span style={{ width: "3%" }}>1
+                {/* <input
+                  type="number"
+                  onClick={handleQuantityChange}
+                  style={{
+                    width: "200%",
+                    backgroundColor: "rgb(240, 196, 114)",
+                    fontWeight: "bold",
+                  }}
+                /> */}
+              </span>
+              <button
+                onClick={(e) => {
+                  addToCart(item, e);
+                }}
+                className="bg-green-400 py-1 px-4 rounded-full font-bold  text-white  hover:bg-green-800 font-medium dark:bg-green-600 dark:hover:bg-green-700"
+              >
+                +ADD
+              </button>
             </div>
           ))}
         </div>

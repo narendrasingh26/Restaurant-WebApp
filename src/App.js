@@ -9,10 +9,9 @@ function App() {
 
   return (
     <>
-    <CartContext.Provider value={{ cart, setCart }}>
-      <Navbar/>
-      {/* other components */}
-    </CartContext.Provider>
+      <CartContext.Provider value={{ cart, setCart }}>
+        <Navbar />
+      </CartContext.Provider>
     </>
   );
 }
