@@ -90,7 +90,7 @@ const Cart = (props) => {
   return (
     <>
       <ListGroup>{cartItems}</ListGroup>
-      {cartItems.length === 0 && <div className="bg-red-200">++CART IS EMPTY++</div>}
+      {cartItems.length === 0 && <img src='./cart.webp' alt='cart'></img>}
       <div className="mt-3">
         <span className="mr-3">Total Amount:</span>
         <span>{totalAmount}</span>

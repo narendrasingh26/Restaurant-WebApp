@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 import CartButton from "./CartButton";
 
 const Navbar = () => {
+  
   return (
     <>
       <div

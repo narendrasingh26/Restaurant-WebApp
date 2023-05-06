@@ -5,7 +5,6 @@ import { CartContext } from "./CartContext";
 
 function App() {
   const [cart, setCart] = useState([]);
-  console.log(cart);
 
   return (
     <>

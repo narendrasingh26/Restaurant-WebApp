@@ -1,6 +1,6 @@
 import React from "react";
 import { CartContext } from "../CartContext";
-import { useContext } from "react";
+import { useContext} from "react";
 
 const items = [
   {
@@ -49,23 +49,24 @@ const items = [
 
 const CartItem = () => {
   const { cart, setCart } = useContext(CartContext);
+  
+    
 
   const addToCart = (item) => {
-    const existingItemIndex=cart.findIndex((el)=>el.id===item.id);
-    const existingItem=cart[existingItemIndex];
+    const existingItemIndex = cart.findIndex((el) => el.id === item.id);
+    const existingItem = cart[existingItemIndex];
 
     let updatedItems;
-    if(existingItem){
-      const updatedItem={...existingItem,amount: +existingItem.amount+1};
-      updatedItems=[...cart];
-      updatedItems[existingItemIndex]=updatedItem;
+    if (existingItem) {
+      const updatedItem = { ...existingItem, amount:+existingItem.amount + 1 };
+      updatedItems = [...cart];
+      updatedItems[existingItemIndex] = updatedItem;
       setCart(updatedItems);
-    }else{
-      let newCart=[...cart,{...item,amount:1}];
+    } else {
+      let newCart = [...cart, { ...item, amount: 1 }];
       setCart(newCart);
     }
-    // let newCart = [...cart, { ...item, amount: 1 }];
-    // setCart(newCart);
+    
   };
 
   return (
@@ -114,15 +115,14 @@ const CartItem = () => {
                     width: "200%",
                     backgroundColor: "rgb(240, 196, 114)",
                     fontWeight: "bold",
-                  }}
-                /> */}
+                  }} */}
+                
               </span>
               <button
                 onClick={(e) => {
                   addToCart(item, e);
                 }}
                 className="bg-green-400 py-1 px-4 rounded-full font-bold  text-white  hover:bg-green-800 font-medium dark:bg-green-600 dark:hover:bg-green-700"
-                
               >
                 +ADD
               </button>
@@ -133,5 +133,6 @@ const CartItem = () => {
     </div>
   );
 };
+
 
 export default CartItem;

@@ -18,7 +18,11 @@ function CartButton() {
     setCart(cart);
   };
 
-  let total = cart.length;
+  // let total = cart.length;
+  let total=0;
+  for(const el of cart){
+      total=total+el.amount;
+  }
 
   return (
     <>
