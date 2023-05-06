@@ -1,6 +1,6 @@
 import React from "react";
 import { CartContext } from "../CartContext";
-import { useContext} from "react";
+import { useContext } from "react";
 
 const items = [
   {
@@ -49,8 +49,6 @@ const items = [
 
 const CartItem = () => {
   const { cart, setCart } = useContext(CartContext);
-  
-    
 
   const addToCart = (item) => {
     const existingItemIndex = cart.findIndex((el) => el.id === item.id);
@@ -58,7 +56,7 @@ const CartItem = () => {
 
     let updatedItems;
     if (existingItem) {
-      const updatedItem = { ...existingItem, amount:+existingItem.amount + 1 };
+      const updatedItem = { ...existingItem, amount: +existingItem.amount + 1 };
       updatedItems = [...cart];
       updatedItems[existingItemIndex] = updatedItem;
       setCart(updatedItems);
@@ -66,7 +64,6 @@ const CartItem = () => {
       let newCart = [...cart, { ...item, amount: 1 }];
       setCart(newCart);
     }
-    
   };
 
   return (
@@ -106,8 +103,7 @@ const CartItem = () => {
               ></img>
               <h2 className="text-lg font-bold my-8">{item.name}</h2>
               <span className="text-lg font-bold my-8">₹{item.price}</span>
-              <span style={{ width: "3%" }}>
-                1
+              <span style={{ width: "3%" }}>1
                 {/* <input
                   type="number"
                   onClick={handleQuantityChange}
@@ -116,7 +112,6 @@ const CartItem = () => {
                     backgroundColor: "rgb(240, 196, 114)",
                     fontWeight: "bold",
                   }} */}
-                
               </span>
               <button
                 onClick={(e) => {
@@ -133,6 +128,5 @@ const CartItem = () => {
     </div>
   );
 };
-
 
 export default CartItem;

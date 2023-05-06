@@ -21,7 +21,7 @@ function CartButton() {
   // let total = cart.length;
   let total=0;
   for(const el of cart){
-      total=total+el.amount;
+      total=total+el.amount
   }
 
   return (
