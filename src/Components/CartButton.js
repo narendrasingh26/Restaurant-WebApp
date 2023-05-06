@@ -44,13 +44,13 @@ function CartButton() {
       <Modal
         show={show}
         onHide={handleClose}
-        className="container mx-auto lg:w-1/2 w-full pb-24 font-bold"
+        className="container mx-auto lg:w-1/2 w-full pb-24 font-bold "
         style={{ width: "500%" }}
       >
-        <Modal.Header>
+        <Modal.Header className="bg-red-400">
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ width: "100%" }}>
+        <Modal.Body style={{ width: "100%" }} >
           <Cart
             show={show}
             onClose={handleClose}

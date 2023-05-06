@@ -18,21 +18,14 @@ const Cart = (props) => {
   };
 
   const handleIncrease = (id) => {
-    const existingItem = cart.find((item) => item.id === id);
-
-    if (existingItem) {
-      const updatedCartItems = cart.map((item) => {
-        if (item.id === id) {
-          return { ...item, amount: item.amount + 1 };
-        } else {
-          return item;
-        }
-      });
-      setCart(updatedCartItems);
-    } else {
-      const newItem = props.menuItems.find((item) => item.id === id);
-      setCart([...cart, { ...newItem, amount: 1 }]);
-    }
+    const updatedCartItems = cart.map((item) => {
+      if (item.id === id) {
+        return { ...item, amount: item.amount + 1 };
+      } else {
+        return item;
+      }
+    });
+    setCart(updatedCartItems);
   };
 
   const handleDelete = (id) => {
@@ -97,6 +90,7 @@ const Cart = (props) => {
   return (
     <>
       <ListGroup>{cartItems}</ListGroup>
+      {cartItems.length === 0 && <div className="bg-red-200">++CART IS EMPTY++</div>}
       <div className="mt-3">
         <span className="mr-3">Total Amount:</span>
         <span>{totalAmount}</span>

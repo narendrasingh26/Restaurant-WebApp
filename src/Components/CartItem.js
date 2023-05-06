@@ -49,11 +49,23 @@ const items = [
 
 const CartItem = () => {
   const { cart, setCart } = useContext(CartContext);
-  // const [quantity, setQuantity] = useState("");
 
   const addToCart = (item) => {
-    let newCart = [...cart, { ...item, amount: 1 }];
-    setCart(newCart);
+    const existingItemIndex=cart.findIndex((el)=>el.id===item.id);
+    const existingItem=cart[existingItemIndex];
+
+    let updatedItems;
+    if(existingItem){
+      const updatedItem={...existingItem,amount: +existingItem.amount+1};
+      updatedItems=[...cart];
+      updatedItems[existingItemIndex]=updatedItem;
+      setCart(updatedItems);
+    }else{
+      let newCart=[...cart,{...item,amount:1}];
+      setCart(newCart);
+    }
+    // let newCart = [...cart, { ...item, amount: 1 }];
+    // setCart(newCart);
   };
 
   return (
@@ -93,7 +105,8 @@ const CartItem = () => {
               ></img>
               <h2 className="text-lg font-bold my-8">{item.name}</h2>
               <span className="text-lg font-bold my-8">₹{item.price}</span>
-              <span style={{ width: "3%" }}>1
+              <span style={{ width: "3%" }}>
+                1
                 {/* <input
                   type="number"
                   onClick={handleQuantityChange}
@@ -109,6 +122,7 @@ const CartItem = () => {
                   addToCart(item, e);
                 }}
                 className="bg-green-400 py-1 px-4 rounded-full font-bold  text-white  hover:bg-green-800 font-medium dark:bg-green-600 dark:hover:bg-green-700"
+                
               >
                 +ADD
               </button>

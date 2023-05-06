@@ -18,11 +18,11 @@ const Navbar = () => {
         >
           React Meals
         </div>
-        <CartButton/>
+        <CartButton />
       </div>
 
       <Card />
-     
+
       <CartItem />
     </>
   );
